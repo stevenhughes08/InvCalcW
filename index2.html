@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inventory Calculator</title>
+</head>
+<!--HELPFUL Tutorials-->
+<!--https://stackoverflow.com/questions/28695617/how-to-get-a-number-value-from-an-input-field-->
+<!--https://jsfiddle.net/Xotic750/SSVSW/-->
+<!--https://stackoverflow.com/questions/20850204/how-to-search-json-array-with-search-filter-form-->
+<!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter-->
+
+<body>
+    <script src="allinvitems.js"></script>
+    <div>
+        <p class="Instructions">Instructions</p>
+    </div>
+    <div>
+        <form>.
+            <input id="searchInput" type="text" label="Search" value="Search for Inventory items">
+            <button id="searchBtn" onclick="searchFunc()" name="searchBtn">Search</button>
+            <p><textarea id="response" rows="0" cols="45" wrap></textarea></p>
+        </form><br><br>
+
+        <form name="invForm">
+            <input id="countTxt" type="number"> /
+            <input id="optimalTxt" type="number"> = <i id="output">Optimal usage</i>
+            <input type="button" onclick="calculate()" name="Calculate" value="Let's Inv!">
+            <input type="file">
+            <script>
+                function searchFunc() {
+                    //Creates variables for my buttons, variable for output and declare an empty product array.
+                    let search = document.getElementById("searchBtn");
+                    let searchResults = document.getElementById("response");
+                }
+
+                //make a construction to reference my products
+                function filterProduct(InvItemName, GinNum) {
+                    return function(el) {
+                        var r = el.allInvItems;
+                        return r.InvItemName === InvItemName && r.GinNum === GinNum;
+
+                    }
+
+                }
+
+                allInvItems.filter(filterProduct('Chicken'));
+            </script>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

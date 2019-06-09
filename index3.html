@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inventory Calculator</title>
+</head>
+<!--HELPFUL Tutorials-->
+<!--https://stackoverflow.com/questions/28695617/how-to-get-a-number-value-from-an-input-field-->
+<!--https://jsfiddle.net/Xotic750/SSVSW/-->
+<!--https://stackoverflow.com/questions/20850204/how-to-search-json-array-with-search-filter-form-->
+<!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter-->
+<!--https://stackoverflow.com/questions/20850204/how-to-search-json-array-with-search-filter-form-->
+
+<body>
+    <script src="allinvitems.js"></script>
+    <div>
+        <p class="Instructions">Instructions</p>
+    </div>
+    <div>
+        <form>.
+            <input id="searchInput" type="text" label="Search">
+            <button id="searchBtn" onclick="getSearchTerm()" name="searchBtn">Search</button>
+            <p><textarea id="response" rows="0" cols="45" wrap></textarea></p>
+        </form><br><br>
+
+        <form name="invForm">
+            <input id="countTxt" type="number"> /
+            <input id="optimalTxt" type="number"> = <i id="output">Optimal usage</i>
+            <input type="button" onclick="calculate()" name="Calculate" value="Let's Inv!">
+            <input type="file">
+            <script>
+                const _searchResults = document.getElementById("response");
+
+                const _invItems = [];
+
+                //Make a construcotor to reference my InvItems
+                function addInvItem(ProdId, InvItemName, GinNum, QtyServUnit, QtyCountUnit, PurchUnit, CountUnit, SellUnit, CountFrequency, StandCost) {
+                    const _invItem = {
+                        "ProdId": ProdId,
+                        "InvItemName": InvItemName,
+                        "GinNum": GinNum,
+                        "QtyServUnit": QtyServUnit,
+                        "QtyCountUnit": QtyCountUnit,
+                        "PurchUnit": PurchUnit,
+                        "CountUnit": CountUnit,
+                        "SellUnit": SellUnit,
+                        "CountFrequency": CountFrequency,
+                        "StandCost": StandCost
+                    };
+                    //push item into array
+                    _invItems.push(_invItem)
+
+                }
+
+                //build a function that compares all the InvItems
+                function compareSearch(a, b) {
+                    if (a.InvItemName < b.InvItemName) {
+                        return -1;
+                    }
+
+                    if (a.InvItemName > b.InvItemName) {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+
+                //function to display Inventory items info inner HTML if in array
+                function displaySearchResult() {
+                    allInvItems.sort(compareSearch);
+                    let output = document.getElementById("response");
+                    let formInput = document.getElementById('searchInput').value.trim();
+
+                    for (let i = 0; i < allInvItems.length; i += 1) {
+                        if (allInvItems[i].InvItemName === searchInput) {
+                            output.value = searchInput + " , " + allInvItems[i].InvItemName + " " + " , " + allInvItems[i].GinNum;
+                        }
+                    }
+                }
+
+
+                function getSearchTerm(value) {
+                    let el = document.getElementById('searchInput');
+                    if (el !== null && el.value === "") {
+                        alert("Please enter a valid search term.")
+                    } else {
+
+
+
+                    }
+                }
+
+                //add event listeners for the buttons
+                searchBtn.addEventListener('click', displaySearchResult, false);
+                //make a construction to reference my products
+                function searchFilter() {
+
+
+                }
+
+                //allInvItems.map(invItem => invItem.length);
+            </script>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

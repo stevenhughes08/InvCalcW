@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inventory Calculator</title>
+</head>
+<!--HELPFUL Tutorials-->
+<!--https://stackoverflow.com/questions/28695617/how-to-get-a-number-value-from-an-input-field-->
+<!--https://jsfiddle.net/Xotic750/SSVSW/-->
+<!--https://stackoverflow.com/questions/20850204/how-to-search-json-array-with-search-filter-form-->
+<!--https://www.taniarascia.com/how-to-use-local-storage-with-javascript/-->
+
+<body>
+    <script src="allinvitems.js"></script>
+    <div>
+        <p class="Instructions">Instructions</p>
+    </div>
+    <div>
+        <form name="entryForm">
+            <input id="searchInput" type="text" label="Search" onclick="this.value = '' "/>
+            <button id="searchBtn"  onclick="inputValue();">Search</button>
+            <p id="response">I'm the value</p>
+        </form><br><br>
+
+        <form name="invCalc">
+            <input id="countTxt" type="number"> /
+            <input id="optimalTxt" type="number"> = <i id="output">Optimal usage</i>
+            <input type="button" onclick="calculate()" name="Calculate" value="Let's Inv!">
+            <input type="file">
+            <script>
+                
+                function inputValue(){
+                    //Gets the value from the user input field on button click & clears text field onclick. 
+            
+                    const _searchInput = document.getElementById('searchInput').value;
+                    
+                        if( _searchInput === "") {
+                            alert('That item does not exist.');
+                        } else {
+                            searchFunc();
+                        } 
+
+                    sessionStorage.setItem('_searchInput', _searchInput); 
+                    console.log('Input value successfully ran and stored data in local storage. With the value of '+ _searchInput);           
+                }
+
+                function searchFunc(){
+                    //Searches allInvItems array and returns results as an object to responses id.
+                     //sessionStorage.getItem('_searchInput');
+                     const storedInput = sessionStorage.getItem('_searchInput');
+                     const _results = allInvItems.filter(function(obj) {
+                        return obj.InvItemName == storedInput;
+                     });
+                    
+                     console.log("searchFunc ran with the value of " + _searchInput);
+                     
+                }
+
+                function clearStore() {
+                    //clears local storage
+                    sessionStorage.clear();
+                }
+                // function saveData(x){
+                //     localStorage.setItem('_searchInput', x);
+                // }
+
+                // searchBtn.addEventListener("click", function(){
+                //     saveData();
+                // }, false);
+
+                // _savedSearchInput = paseInt(localStorage.getItem('_searchInput'), );
+                // if(typeof _savedSearchInput === "text")
+                // function searchFunc() {
+                //     //Creates variables for my buttons, variable for output and declare an empty product array.
+                     
+                //     let _product = allInvItems.filter(function(obj) {
+                //         return obj.InvItemName == "Chicken";
+                //     });
+                // }
+
+
+
+
+
+                //make a construction to reference my products
+                // function filterProduct(InvItemName, GinNum, QtyServUnit, PurchUnit, SellUnit, CountFrequency, StandCost) {
+                //     return function(el) {
+                //         return r.InvItemName === InvItemName && r.GinNum === GinNum && r.QtyServUnit === QtyServUnit && r.QtyCountUnit === QtyCountUnit && r.PurchUnit === PurchUnit && r.CountUnit === CountUnit && r.SellUnit === SellUnit && r.CountFrequency === CountFrequency && r.StandCost === StandCost;
+                // }
+                // let products = {
+                //     "InvItemName": InvItemName,
+                //     "GinNum": GinNum,
+                //     "QtyServUnit": QtyServUnit,
+                //     "QtyCountUnit": QtyCountUnit,
+                //     "PurchUnit": PurchUnit,
+                //     "CountUnit": CountUnit,
+                //     "SellUnit": SellUnit,
+                //     "CountFrequency": CountFrequency,
+                //     "StandCost": StandCost
+
+                // }
+
+                //     const _product = [allInvItems.filter(function(obj) {
+                //         return obj.InvItemName == "Chicken";
+                //     })];
+                // }
+
+
+
+
+                // function calculate() {
+                //     let _count, _optimal, _output;
+                //     _count = parseFloat(document.getElementById('countTxt').value, 10);
+                //     _optimal = parseFloat(document.getElementById('optimalTxt').value, 10);
+                //     _output = _count / _optimal;
+
+
+                //     document.getElementById('output').innerHTML = _output;
+
+                // }
+            </script>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
