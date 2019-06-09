@@ -40,10 +40,10 @@
                         if( _searchInput === "") {
                             alert('That item does not exist.');
                         } else {
-                            searchFunc();
+                            sessionStorage.setItem('_searchInput', _searchInput); ;
                         } 
 
-                    sessionStorage.setItem('_searchInput', _searchInput); 
+                    
                     console.log('Input value successfully ran and stored data in local storage. With the value of '+ _searchInput);           
                 }
 
